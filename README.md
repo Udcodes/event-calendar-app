@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Tailwind CSS
 - React Hooks
 - React-redux - for client state management
-- React Query - for server side management
+- React Query - for server state management
 
 <br />
 
