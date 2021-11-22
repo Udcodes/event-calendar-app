@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, memo } from "react";
+import { useSelector } from "react-redux";
+import { getMonth } from "./helper";
+import CalendarHeader from "./components/CalendarHeader";
+import CalendarItem from "./components/CalendarItem";
+import EventModal from "./components/EventModal";
+import useCalendarEvents from "./Hooks/useCalendarEvents";
+const commonStyle = "h-screen flex";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  const { monthIndex, showEventModal } = useSelector(
+    ({ calendarReducer }) => calendarReducer
   );
-}
 
-export default App;
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const { events, isLoading } = useCalendarEvents();
+
+  useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex]);
+
+  return (
+    <>
+      {showEventModal && <EventModal />}
+      <div className={`${commonStyle} flex-col overflow-hidden`}>
+        <CalendarHeader />
+        {isLoading ? (
+          <p className={`${commonStyle} items-center justify-center`}>
+            Loading events...
+          </p>
+        ) : (
+          <CalendarItem month={currentMonth} data={events} />
+        )}
+      </div>
+    </>
+  );
+};
+
+export default memo(App);
