@@ -32,6 +32,7 @@ export const formObject = (values) => {
 };
 
 export const iconVariant = "material-icons-outlined cursor-pointer";
+export const commonStyle = "h-screen flex";
 
 export const btnAction = () => {
   const saveAction = (saving) => {
@@ -44,4 +45,11 @@ export const btnAction = () => {
   };
 
   return { saveAction, updateAction };
+};
+
+export const sortEventInAscendingOrderByStartTime = (arr) => {
+  const getNumberFromTime = (time) => +time.replace(/:/g, "");
+  return arr.sort(
+    (a, b) => getNumberFromTime(a.startTime) - getNumberFromTime(b.startTime)
+  );
 };

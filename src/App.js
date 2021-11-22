@@ -1,17 +1,15 @@
 import React, { useState, useEffect, memo } from "react";
 import { useSelector } from "react-redux";
-import { getMonth } from "./helper";
+import { getMonth, commonStyle } from "./helper";
 import CalendarHeader from "./components/CalendarHeader";
 import CalendarItem from "./components/CalendarItem";
 import EventModal from "./components/EventModal";
-import useCalendarEvents from "./Hooks/useCalendarEvents";
-const commonStyle = "h-screen flex";
+import useCalendarEvents from "./hooks/useCalendarEvents";
 
 const App = () => {
   const { monthIndex, showEventModal } = useSelector(
     ({ calendarReducer }) => calendarReducer
   );
-
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { events, isLoading } = useCalendarEvents();
 

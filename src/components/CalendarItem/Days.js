@@ -6,7 +6,10 @@ import {
   selectedEvent,
   showEventModal,
 } from "../../redux/actions";
-import { getCurrentDay } from "../../helper";
+import {
+  getCurrentDay,
+  sortEventInAscendingOrderByStartTime,
+} from "../../helper";
 import "./styles.scss";
 
 const Days = ({ day, rowIdx, data }) => {
@@ -25,7 +28,7 @@ const Days = ({ day, rowIdx, data }) => {
       day.format("MM");
 
     setDayEvents(events);
-    setIsDayInMonth(!!isADayInSelectedMonth);
+    setIsDayInMonth(isADayInSelectedMonth);
   }, [data, day, monthIndex]);
 
   const onDateSelect = () => {
@@ -62,7 +65,7 @@ const Days = ({ day, rowIdx, data }) => {
         }`}
         onClick={onDateSelect}
       >
-        {dayEvents?.map((evt) => (
+        {sortEventInAscendingOrderByStartTime(dayEvents)?.map((evt) => (
           <div
             key={evt.id}
             onClick={() => dispatch(selectedEvent(evt))}

@@ -5,7 +5,7 @@ import {
   useCreateEvent,
   useUpdateEvent,
   useDeleteEvent,
-} from "../../Hooks/useEventFormActions";
+} from "../../hooks/useEventFormActions";
 import { formObject } from "../../helper";
 import { showEventModal, selectedEvent } from "../../redux/actions";
 
