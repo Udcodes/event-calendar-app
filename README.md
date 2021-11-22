@@ -1,16 +1,20 @@
-# Getting Started with Event Calendar App
+# Event Calendar Application
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<br />
+
 ## Technologies used
 
-React Js
-JSX
-CSS preprocessor SASS
-Tailwind CSS
-React Hooks
-React-redux - for client state management
-Rect Query - for server side management
+- React JavaScript
+- JSX
+- CSS preprocessor - SASS
+- Tailwind CSS
+- React Hooks
+- React-redux - for client state management
+- React Query - for server side management
+
+<br />
 
 ## Calendar Features
 
@@ -18,13 +22,15 @@ Rect Query - for server side management
 
 📍🔎 She also displays events created on the calendar view in the correct time order.
 
-🧘🏽‍♂️↪️ Ability to update event entries – including changing title of event, date and time.
+🧘🏽‍♂️↪️ You can also update event entries – including changing title of event, date and time.
 
 🏌🏽‍♀️🗑 She also features the ability to delete reminders 🚮
 
 🙅🏽‍♀️🚫 No screen size discrimination, she is responsive.
 
-## Available Scripts
+<br />
+
+## Test this application via the Scripts below
 
 In the project directory, you can run:
 
@@ -46,8 +52,12 @@ You will also see any lint errors in the browser console.
 
 ### `npm run server`
 
-To run the json server, open another terminal and run the command above.
-❗️❗️❗️ This would ensure all event entries are stored in the database and not lost
+To run the json server, open another terminal window and run the command above.
+<br />
+❗️❗️❗️ This would ensure all calendar event entries are stored in the database and not lost ❗️❗️❗️
+<br />
+Open [http://localhost:3006/savedEvents](http://localhost:3006/saveEvents) to view the database in the browser.
+<br />
 
 ### `yarn build`
 
