@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { useSelector } from "react-redux";
-import { getMonth, commonStyle } from "./helper";
+import { getAllDaysInMonth, commonStyle } from "./helper";
 import CalendarHeader from "./components/CalendarHeader";
 import CalendarItem from "./components/CalendarItem";
 import EventModal from "./components/EventModal";
@@ -10,11 +10,11 @@ const App = () => {
   const { monthIndex, showEventModal } = useSelector(
     ({ calendarReducer }) => calendarReducer
   );
-  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const [currentMonth, setCurrentMonth] = useState([]);
   const { events, isLoading } = useCalendarEvents();
 
   useEffect(() => {
-    setCurrentMonth(getMonth(monthIndex));
+    setCurrentMonth(getAllDaysInMonth(monthIndex));
   }, [monthIndex]);
 
   return (
