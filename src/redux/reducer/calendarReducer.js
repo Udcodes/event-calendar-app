@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 
 const initialState = {
   monthIndex: dayjs().month(),
-  daySelected: 0,
+  daySelected: null,
   showEventModal: false,
   selectedEvent: null,
 };

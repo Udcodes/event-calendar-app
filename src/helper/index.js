@@ -34,19 +34,6 @@ export const formObject = (values) => {
 export const iconVariant = "material-icons-outlined cursor-pointer";
 export const commonStyle = "h-screen flex";
 
-export const btnAction = () => {
-  const saveAction = (saving) => {
-    if (!saving) return "Save";
-    else return "Saving";
-  };
-  const updateAction = (updating) => {
-    if (!updating) return "Update";
-    else return "Updating";
-  };
-
-  return { saveAction, updateAction };
-};
-
 export const sortEventInAscendingOrderByStartTime = (arr) => {
   const getNumberFromTime = (time) => +time.replace(/:/g, "");
   return arr.sort(

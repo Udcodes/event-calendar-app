@@ -42,6 +42,10 @@ const EventModal = () => {
     }
   };
 
+  const loadingEvent = () => {
+    return { isSaving, isUpdating };
+  };
+
   return (
     <>
       <EventForm
@@ -55,8 +59,7 @@ const EventModal = () => {
         onSubmit={handleSubmit}
         selectedEvent={event}
         daySelected={daySelected}
-        updatingEvent={isUpdating}
-        savingEvent={isSaving}
+        loadingEvent={loadingEvent}
       />
     </>
   );

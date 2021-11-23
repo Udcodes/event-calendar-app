@@ -12,11 +12,18 @@ const EventForm = (props) => {
     formValues,
     onChange,
     daySelected,
-    updatingEvent,
-    savingEvent,
+    loadingEvent,
   } = props;
   const { title, startTime, endTime } = formValues;
-  const { saveAction, updateAction } = btnAction();
+  const { isSaving, isLoading } = loadingEvent;
+
+  const btnAction = () => {
+    if (!selectedEvent) {
+      return !isSaving ? "Save" : "Saving";
+    } else {
+      return !isLoading ? "Update" : "Updating";
+    }
+  };
 
   return (
     <div className="modal">
@@ -61,9 +68,7 @@ const EventForm = (props) => {
         </div>
         <footer className="footer">
           <button type="submit" className="footer btn">
-            {!selectedEvent
-              ? saveAction(savingEvent)
-              : updateAction(updatingEvent)}
+            {btnAction()}
           </button>
         </footer>
       </form>

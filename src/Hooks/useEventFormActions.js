@@ -14,7 +14,6 @@ export const useCreateEvent = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
         dispatch(showEventModal(false));
-        dispatch(selectedEvent(null));
       },
     }
   );
@@ -35,7 +34,6 @@ export const useUpdateEvent = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
         dispatch(showEventModal(false));
-        dispatch(selectedEvent(null));
       },
     }
   );
@@ -52,8 +50,8 @@ export const useDeleteEvent = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
-        dispatch(showEventModal(false));
         dispatch(selectedEvent(null));
+        dispatch(showEventModal(false));
       },
     }
   );
