@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Tailwind CSS
 - React Hooks
 - React-redux - for client state management
-- React Query - for server side management
+- React Query - for server state management
 
 <br />
 
@@ -28,9 +28,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 🙅🏽‍♀️🚫 No screen size discrimination, she is responsive.
 
+
 <br />
 
-## Test this application via the Scripts below
+## Test this application by running the commands below
 
 In the project directory, you can run:
 
