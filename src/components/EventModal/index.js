@@ -6,8 +6,8 @@ import {
   useUpdateEvent,
   useDeleteEvent,
 } from "../../hooks/useEventFormActions";
-import { formObject } from "../../helper";
 import { showEventModal, selectedEvent } from "../../redux/actions";
+import { formObject } from "../../helper";
 
 const EventModal = () => {
   const dispatch = useDispatch();
@@ -42,10 +42,6 @@ const EventModal = () => {
     }
   };
 
-  const loadingEvent = () => {
-    return { isSaving, isUpdating };
-  };
-
   return (
     <>
       <EventForm
@@ -59,7 +55,7 @@ const EventModal = () => {
         onSubmit={handleSubmit}
         selectedEvent={event}
         daySelected={daySelected}
-        loadingEvent={loadingEvent}
+        loadingState={{ isSaving, isUpdating }}
       />
     </>
   );

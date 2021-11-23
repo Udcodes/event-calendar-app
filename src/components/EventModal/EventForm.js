@@ -1,6 +1,5 @@
 import React from "react";
 import { EventFormHeader } from "./EventFormHeader";
-import { btnAction } from "../../helper";
 import "./styles.scss";
 
 const EventForm = (props) => {
@@ -12,17 +11,14 @@ const EventForm = (props) => {
     formValues,
     onChange,
     daySelected,
-    loadingEvent,
+    loadingState,
   } = props;
   const { title, startTime, endTime } = formValues;
-  const { isSaving, isLoading } = loadingEvent;
+  const { isSaving, isUpdating } = loadingState;
 
   const btnAction = () => {
-    if (!selectedEvent) {
-      return !isSaving ? "Save" : "Saving";
-    } else {
-      return !isLoading ? "Update" : "Updating";
-    }
+    if (!selectedEvent) return !isSaving ? "Save" : "Saving";
+    return !isUpdating ? "Update" : "Updating";
   };
 
   return (
@@ -68,7 +64,7 @@ const EventForm = (props) => {
         </div>
         <footer className="footer">
           <button type="submit" className="footer btn">
-            {btnAction()}
+            {loadingState && btnAction()}
           </button>
         </footer>
       </form>
