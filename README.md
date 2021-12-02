@@ -6,8 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Technologies used
 
-- React JavaScript
-- JSX
+- React TypeScript
+- TSX
 - CSS preprocessor - SASS
 - Tailwind CSS
 - React Hooks
@@ -27,7 +27,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 🏌🏽‍♀️🗑 She also features the ability to delete reminders 🚮
 
 🙅🏽‍♀️🚫 No screen size discrimination, she is responsive.
-
 
 <br />
 
