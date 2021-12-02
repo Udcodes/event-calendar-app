@@ -1,6 +1,0 @@
-export const NEXT_MONTH = "NEXT_MONTH";
-export const PREVIOUS_MONTH = "PREVIOUS_MONTH";
-export const RESET_MONTH = "RESET_MONTH";
-export const DAY_SELECTED = "DAY_SELECTED";
-export const SELECTED_EVENT = "SELECTED_EVENT";
-export const SHOW_EVENT_MODAL = "SHOW_EVENT_MODAL";

@@ -1,22 +1,22 @@
 import dayjs from "dayjs";
-import React, { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  daySelected,
-  selectedEvent,
-  showEventModal,
-} from "../../redux/actions";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../state";
+import { IDayProps } from "./calendarItemInterfaces";
 import {
   getCurrentDay,
   sortEventInAscendingOrderByStartTime,
 } from "../../helper";
 import "./styles.scss";
 
-const Days = ({ day, rowIdx, data }) => {
+const Days = ({ day, rowIdx, data }: IDayProps) => {
   const dispatch = useDispatch();
-  const [dayEvents, setDayEvents] = useState([]);
-  const [isDayInMonth, setIsDayInMonth] = useState(false);
-  const { monthIndex } = useSelector(({ calendarReducer }) => calendarReducer);
+  const [dayEvents, setDayEvents] = useState<any[]>([]);
+  const [isDayInMonth, setIsDayInMonth] = useState<boolean>(false);
+  const { monthIndex } = useSelector(({ calender }: State) => calender);
+  const { setShowEventModal, setSelectedEvent, setSelectedDay } =
+    bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     const events = data?.filter(
@@ -35,8 +35,8 @@ const Days = ({ day, rowIdx, data }) => {
     if (!isDayInMonth) {
       return;
     }
-    dispatch(daySelected(day));
-    dispatch(showEventModal(true));
+    setSelectedDay(day);
+    setShowEventModal(true);
   };
 
   return (
@@ -68,7 +68,7 @@ const Days = ({ day, rowIdx, data }) => {
         {sortEventInAscendingOrderByStartTime(dayEvents)?.map((evt) => (
           <div
             key={evt.id}
-            onClick={() => dispatch(selectedEvent(evt))}
+            onClick={() => setSelectedEvent(evt)}
             className={`bg-indigo-200 px-1 mr-3 text-gray-600 text-sm mb-1 day-tiles`}
           >
             <span className="truncate">

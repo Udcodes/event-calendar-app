@@ -1,16 +1,18 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, FC } from "react";
 import { useSelector } from "react-redux";
 import { getAllDaysInMonth, commonStyle } from "./helper";
 import CalendarHeader from "./components/CalendarHeader";
 import CalendarItem from "./components/CalendarItem";
 import EventModal from "./components/EventModal";
-import useCalendarEvents from "./hooks/useCalendarEvents";
+import useCalendarEvents from "./hooks/queries/useCalendarEvents";
+import { Dayjs } from "dayjs";
+import { State } from "./state";
 
-const App = () => {
+const App: FC = () => {
   const { monthIndex, showEventModal } = useSelector(
-    ({ calendarReducer }) => calendarReducer
+    (state: State) => state.calender
   );
-  const [currentMonth, setCurrentMonth] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState<Dayjs[][]>([]);
   const { events, isLoading } = useCalendarEvents();
 
   useEffect(() => {

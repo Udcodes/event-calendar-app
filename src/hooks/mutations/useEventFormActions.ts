@@ -1,19 +1,23 @@
 import { useMutation, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
-import { showEventModal, selectedEvent } from "../redux/actions";
+import { bindActionCreators } from "redux";
+import { IEvent } from "../../interfaces";
+import { actionCreators } from "../../state";
 import axios from "axios";
+
 const baseUrl = "http://localhost:3006/savedEvents";
 
-export const useCreateEvent = () => {
-  const dispatch = useDispatch();
+export const useCreateEvent = (): any => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const { setShowEventModal } = bindActionCreators(actionCreators, dispatch);
 
   const { mutate: createEvent, isLoading: isSaving } = useMutation(
     (values) => axios.post(baseUrl, values).then(({ data }) => data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
-        dispatch(showEventModal(false));
+        setShowEventModal(false);
       },
     }
   );
@@ -22,18 +26,19 @@ export const useCreateEvent = () => {
 };
 
 export const useUpdateEvent = () => {
-  const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const { setShowEventModal } = bindActionCreators(actionCreators, dispatch);
 
   const { mutate: updateEvent, isLoading: isUpdating } = useMutation(
-    (values) =>
+    (values: IEvent) =>
       axios
         .put(`${baseUrl}/${values.id}`, values)
         .then((response) => response.data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
-        dispatch(showEventModal(false));
+        setShowEventModal(false);
       },
     }
   );
@@ -41,17 +46,21 @@ export const useUpdateEvent = () => {
   return { updateEvent, isUpdating };
 };
 
-export const useDeleteEvent = () => {
-  const dispatch = useDispatch();
+export const useDeleteEvent = (): any => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const { setSelectedEvent, setShowEventModal } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const { mutate: deleteEvent } = useMutation(
     (id) => axios.delete(`${baseUrl}/${id}`).then(({ data }) => data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("savedEvents");
-        dispatch(selectedEvent(null));
-        dispatch(showEventModal(false));
+        setSelectedEvent(null);
+        setShowEventModal(false);
       },
     }
   );
