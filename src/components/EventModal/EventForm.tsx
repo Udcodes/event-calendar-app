@@ -1,8 +1,8 @@
-import React from "react";
 import { EventFormHeader } from "./EventFormHeader";
+import { IEventFormProps } from "./eventFormInterfaces";
 import "./styles.scss";
 
-const EventForm = (props) => {
+const EventForm = (props: IEventFormProps) => {
   const {
     onSubmit,
     onDelete,
@@ -13,10 +13,11 @@ const EventForm = (props) => {
     daySelected,
     loadingState,
   } = props;
+
   const { title, startTime, endTime } = formValues;
   const { isSaving, isUpdating } = loadingState;
 
-  const btnAction = () => {
+  const btnAction = (): string => {
     if (!selectedEvent) return !isSaving ? "Save" : "Saving";
     return !isUpdating ? "Update" : "Updating";
   };

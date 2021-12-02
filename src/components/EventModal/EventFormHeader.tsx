@@ -1,6 +1,11 @@
 import { iconVariant } from "../../helper";
+import { IEventFormHeaderProps } from "./eventFormInterfaces";
 
-export const EventFormHeader = ({ selectedEvent, onDelete, onClose }) => {
+export const EventFormHeader = ({
+  selectedEvent,
+  onDelete,
+  onClose,
+}: IEventFormHeaderProps) => {
   return (
     <header className="bg-gray-100 p-4 header">
       <span className="text-xl">

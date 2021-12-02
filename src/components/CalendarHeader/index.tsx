@@ -1,24 +1,30 @@
 import dayjs from "dayjs";
-import React from "react";
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { nextMonth, prevMonth, resetMonth } from "../../redux/actions";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../state";
 
 import "./styles.scss";
 
-const CalendarHeader = () => {
+const CalendarHeader: FC = () => {
   const dispatch = useDispatch();
-  const { monthIndex } = useSelector(({ calendarReducer }) => calendarReducer);
+  const { resetMonth, nextMonth, prevMonth } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
+
+  const { monthIndex } = useSelector((state: State) => state.calender);
 
   const handlePrevMonth = () => {
-    dispatch(prevMonth(monthIndex));
+    prevMonth(monthIndex);
   };
 
   const handleNextMonth = () => {
-    dispatch(nextMonth(monthIndex));
+    nextMonth(monthIndex);
   };
 
   const handleReset = () => {
-    dispatch(resetMonth(dayjs().month()));
+    resetMonth(dayjs().month());
   };
 
   return (
